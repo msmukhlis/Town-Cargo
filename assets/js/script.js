@@ -1459,18 +1459,52 @@ $document.ready(function () {
             return response.json();
           })
           .then(() => {
-            alert("Вы успешно отправили заявку!");
+            // alert("Вы успешно отправили заявку!");
+
+    Swal.fire({
+        title: 'Success!',
+        text: 'This is a toast notification',
+        icon: 'success',
+        toast: true,
+        height:"200px",
+        position: 'top-center',
+        showConfirmButton: false,
+        timer: 3000
+    });
+
             form.reset();
             if (modal.style.display === "block") {
               modal.style.display = "none";
             }
           })
           .catch((error) => {
-            alert("Ошибка при отправке. Попробуйте позже.");
+    Swal.fire({
+        title: 'error!',
+        text: 'This is a toast notification',
+        icon: 'error',
+        toast: true,
+        height:"200px",
+        position: 'top-center',
+        showConfirmButton: false,
+        timer: 3000
+    });
+            // alert("Ошибка при отправке. Попробуйте позже.");
             console.error("Ошибка при отправке сообщения:", error);
           });
       } catch (error) {
-        alert("Ошибка при отправке. Попробуйте позже.");
+        // alert("Ошибка при отправке. Попробуйте позже.");
+
+    Swal.fire({
+        title: 'Try it!',
+        text: 'This is a toast notification',
+        icon: 'Try ',
+        toast: true,
+        height:"200px",
+        position: 'top-center',
+        showConfirmButton: false,
+        timer: 3000
+    });
+
         console.error("Ошибка при отправке сообщения:", error);
       }
     }
