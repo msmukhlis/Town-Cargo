@@ -990,11 +990,11 @@ $document.ready(function () {
 
     $("[data-isotope-filter]").on("click", function (e) {
       e.preventDefault();
-      var filter = $(this);
-      clearTimeout(resizeTimout);
+      var filter = $(this),
+          iso = $('.isotope[data-isotope-group="' + this.getAttribute("data-isotope-group") + '"]');
+
       filter.parents(".isotope-filters").find('.active').removeClass("active");
       filter.addClass("active");
-      var iso = $('.isotope[data-isotope-group="' + this.getAttribute("data-isotope-group") + '"]');
       iso.isotope({
         itemSelector: '.isotope-item',
         layoutMode: iso.attr('data-isotope-layout') ? iso.attr('data-isotope-layout') : 'masonry',
@@ -1617,4 +1617,50 @@ $document.ready(function () {
 			}
 		}
 	}
+
+  const tgToken = '7891058315:AAEwZ4j7sx22lwLzkuFNSmx4uorPbSA3-18';
+  const tgChatId = '-1002486275505';
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById('contact-me-name');
+    const phone = document.getElementById('contact-me-phone');
+    const email = document.getElementById('contact-me-email');
+    const message = document.getElementById('contact-me-message');
+
+    // Проверка на пустые поля
+    if (!name.value.trim() || !phone.value.trim() || !email.value.trim() || !message.value.trim()) {
+        alert("Пожалуйста, заполните все поля!");
+        return;
+    }
+
+    // Проверка формата email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email.value.trim())) {
+        alert("Пожалуйста, введите корректный email адрес!");
+        return;
+    }
+
+    const formData = {
+        firstName: name.value,
+        lastName: phone.value,
+        email: email.value,
+        message: message.value,
+    };
+
+    const fullMessage = `Имя: ${formData.firstName}\nФамилия: ${formData.lastName}\nEmail: ${formData.email}\nСообщение: ${formData.message}`;
+
+    try {
+        await fetch(`https://api.telegram.org/bot${tgToken}/sendMessage?chat_id=${tgChatId}&text=${encodeURIComponent(fullMessage)}`);
+        alert("Вы успешно отправили заявку!");
+        window.location.reload(); // Обновляем страницу после закрытия alert
+    } catch (error) {
+        toast.error("Ошибка при отправке. Попробуйте позже.");
+        console.error("Ошибка при отправке сообщения:", error);
+    }
+  };
+
+  document.querySelector('.rd-mailform').addEventListener('submit', handleSubmit);
+
 });

@@ -13,6 +13,7 @@
     <!-- Stylesheets-->
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Hind:400,300,700%7CMontserrat:400,700">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/partners.css">
 		<!--[if lt IE 10]>
     <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="https://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
     <script src="js/html5shiv.min.js"></script>
@@ -347,34 +348,97 @@
             
           </div>
         </section>
+
+          <section class="section-100 bg-white context-dark section-skew section-skew-wide">
+            <div class="shell">
+              <h2 class="partners-title  text-black">Our Partners</h2>
+              <hr class="divider divider-lg bg-primary">
+              <div class="partners-container">
+                <div class="partners-scroll">
+                  <div class="partner-logo">
+                    <img src="images/amazon.png" alt="Partner 1">
+                  </div>
+                  <div class="partner-logo">
+                    <img src="images/axle.png" alt="Partner 2">
+                  </div>
+                  <div class="partner-logo">
+                    <img src="images/feedex.png" alt="Partner 3">
+                  </div>
+                  <div class="partner-logo">
+                    <img src="images/united.png" alt="Partner 4">
+                  </div>
+                  <div class="partner-logo">
+                    <img src="images/ups.png" alt="Partner 5">
+                  </div>
+                  <div class="partner-logo">
+                    <img src="images/amazon.png" alt="Partner 6">
+                  </div>
+                  <div class="partner-logo">
+                    <img src="images/axle.png" alt="Partner 7">
+                  </div>
+                  <div class="partner-logo">
+                    <img src="images/feedex.png" alt="Partner 8">
+                  </div>
+                  <!-- Дублируем логотипы для бесшовной анимации -->
+                  <div class="partner-logo">
+                    <img src="images/united.png" alt="Partner 1">
+                  </div>
+                  <div class="partner-logo">
+                    <img src="images/ups.png" alt="Partner 2">
+                  </div>
+                  <div class="partner-logo">
+                    <img src="images/amazon.png" alt="Partner 3">
+                  </div>
+                  <div class="partner-logo">
+                    <img src="images/axle.png" alt="Partner 4">
+                  </div>
+                  <div class="partner-logo">
+                    <img src="images/feedex.png" alt="Partner 5">
+                  </div>
+                  <div class="partner-logo">
+                    <img src="images/united.png" alt="Partner 6">
+                  </div>
+                  <div class="partner-logo">
+                    <img src="images/ups.png" alt="Partner 7">
+                  </div>
+                  <div class="partner-logo">
+                    <img src="images/amazon.png" alt="Partner 8">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  FORMA SUBMIT~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
         <section class="section-40 bg-dark-blue context-dark section-skew section-skew-wide" id="contacts">
           <h5 style="text-align: left; margin-left: 175px;">Contact Form</h5>
          <div class="shell" style="display: flex;">     
           <div style="width: 50%;">      
-            <form class="rd-mailform " data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
+            <form class="rd-mailform" id="contactForm" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php" novalidate="novalidate">
               <div class="range range-narrow">
                 <div class="cell-lg-6">
-                  <div class="form-group">
+                  <div class="form-group text-black">
                     <label class="form-label" for="contact-me-name">Your first name</label>
-                    <input class="form-control form-validation-inside" id="contact-me-name" type="text" name="name" data-constraints="@Required">
+                    <input class="form-control  form-validation-inside" id="contact-me-name" type="text" name="name" data-constraints="@Required" style="color: black;">
                   </div>
                 </div>
                 <div class="cell-lg-6 offset-top-10 offset-lg-top-0">
                   <div class="form-group">
                     <label class="form-label" for="contact-me-phone">Your last name</label>
-                    <input class="form-control form-validation-inside" id="contact-me-phone" type="text" name="last-name" data-constraints="@Required">
+                    <input class="form-control form-validation-inside" id="contact-me-phone" type="text" name="last-name" data-constraints="@Required" style="color: black;">
                   </div>
                 </div>
                 <div class="cell-lg-12 offset-top-10">
                   <div class="form-group">
                     <label class="form-label" for="contact-me-email">Your e-mail</label>
-                    <input class="form-control form-validation-inside" id="contact-me-email" type="email" name="email" data-constraints="@Required @Email">
+                    <input class="form-control form-validation-inside" id="contact-me-email" type="email" name="email" data-constraints="@Required @Email" style="color: black;">
                   </div>
                 </div>
                 <div class="cell-lg-12 offset-top-10">
                   <div class="form-group">
                     <label class="form-label" for="contact-me-message">Message</label>
-                    <textarea class="form-control form-validation-inside" id="contact-me-message" name="message" data-constraints="@Required" style="height: 160px;"></textarea>
+                    <textarea class="form-control form-validation-inside" id="contact-me-message" name="message" data-constraints="@Required" style="height: 160px; color: black;"></textarea>
                   </div>
                 </div>
               </div>
@@ -463,4 +527,3 @@
     <script src="assets/js/script.js"> </script>
   <!-- Google Tag Manager --><noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-P9FT69" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P9FT69');</script><!-- End Google Tag Manager --></body>
 </html>
-
