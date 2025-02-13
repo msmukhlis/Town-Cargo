@@ -7996,10 +7996,6 @@ iframe {
 	padding-right: 15px;
 }
 
-html.lt-ie-10 * + .range,
-* + .range {
-	margin-top: 34px;
-}
 
 html.lt-ie-10 * + [class*='cell-'],
 * + [class*='cell-'],

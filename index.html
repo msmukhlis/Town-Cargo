@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="assets/css/partners.css">
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 
 
 
@@ -45,7 +47,7 @@
                 <div class="top-part right-side">
                   <ul class="list-unstyled">
                     <li class="reveal-lg-inline-block"><span class="icon icon-xxs fa-envelope-o text-middle icon-primary"></span><a class="inset-left-10 text-middle" href="mailto:towncargo.info@gmail.com">towncargo.info@gmail.com</a></li>
-                    <li class="reveal-lg-inline-block"><span class="icon icon-xxs fa-clock-o text-middle icon-primary"></span><span class="inset-left-10 text-middle">Mon–Sat: 7:00–19:00</span></li>
+                    <li class="reveal-lg-inline-block"><span class="icon icon-xxs fa-clock-o text-middle icon-primary"></span><span class="inset-left-10 text-middle">Mon–Sat: 21:00–5:00</span></li>
                     <li class="reveal-lg-inline-block"><span class="icon icon-xxs fa-phone text-middle icon-primary"></span><a class="inset-left-10 text-middle" href="tel:800 750 0033">800 750 0033</a></li>
                   </ul>
                 </div>
@@ -177,8 +179,7 @@
 
                 
                 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~MODAL FORM~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~``` -->
-                <div class="offset-top-20"><a class="btn btn-primary btn-sm" id="openModal">Contact Us</a></div>
-                <!-- <div id="myModal" class="modal">
+                      <!-- <div id="myModal" class="modal">
                   <div class="modalparent">
                     <div class="modal-content">
                       <form class="rd-mailform" id="modalContactForm" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php" novalidate="novalidate">
@@ -216,11 +217,19 @@
                     </div>
                   </div>
               </div> -->
-              <div id="myModal" class="modal">
-                <div class="modalparent">
-                  <div class="modal-content">
-                    <form class="rd-mailform" id="modalContactForm" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php" novalidate="novalidate">
+                <!-- <div class="offset-top-20"><a class="btn btn-primary btn-sm" id="openModal">Contact Us</a></div> -->
+                <!-- <form class="rd-mailform" id="modalContactForm" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php" novalidate="novalidate">
                       <span class="close">&times;</span>
+                      <div class="form-group">
+                        <label class="text-black">Select your role:</label>
+                        <div>
+                            <input type="radio" id="owner" name="role" value="owner" required>
+                            <label for="owner">Owner</label>
+                
+                            <input type="radio" id="company" name="role" value="company" required>
+                            <label for="company">Company</label>
+                        </div>
+                    </div>
                       <div class="range range-narrow">
                         <div class="cell-lg-6">
                           <div class="form-group text-black">
@@ -239,6 +248,11 @@
                         </div>
                         <div class="cell-lg-12 offset-top-10">
                           <div class="form-group">
+                            <input class="form-control form-validation-inside" id="modal-contact-phone" placeholder="Your phone number" type="tel" name="phone" data-constraints="@Required" style="color: black;" required pattern="[0-9]+">
+                          </div>
+                      </div>
+                        <div class="cell-lg-12 offset-top-10">
+                          <div class="form-group">
                             <textarea class="form-control form-validation-inside" id="modal-contact-message" name="message" placeholder="Message" data-constraints="@Required" style="height: 160px; color: black;"></textarea>
                           </div>
                         </div>
@@ -246,10 +260,163 @@
                       <div class="text-center text-lg-left offset-top-10">
                         <button class="btn btn-sm btn-primary" type="submit">Send Message</button>
                       </div>
-                    </form>
+                    </form> -->
+                    <!-- <form class="rd-mailform" id="modalContactForm" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php" novalidate="novalidate">
+                      <span class="close">&times;</span>
+                      <div class="form-group">
+                        <label class="text-black">Select your role:</label>
+                        <div>
+                          <input type="radio" id="owner" name="role" value="owner" required>
+                          <label for="owner">Owner</label>
+                          <input type="radio" id="company" name="role" value="company" required>
+                          <label for="company">Company</label>
+                        </div>
+                      </div>
+                      <div class="range range-narrow">
+                        <div class="cell-lg-6">
+                          <div class="form-group text-black">
+                            <input class="form-control form-validation-inside" id="modal-contact-name" placeholder="Your first name" type="text" name="name" data-constraints="@Required" style="color: black;" required>
+                          </div>
+                        </div>
+                        <div class="cell-lg-6 offset-top-10 offset-lg-top-0">
+                          <div class="form-group">
+                            <input class="form-control form-validation-inside" id="modal-contact-last-name" placeholder="Your last name" type="text" name="last-name" data-constraints="@Required" style="color: black;" required>
+                          </div>
+                        </div>
+                        <div class="cell-lg-12 offset-top-10">
+                          <div class="form-group">
+                            <input class="form-control form-validation-inside" id="modal-contact-email" placeholder="Your e-mail" type="email" name="email" data-constraints="@Required @Email" style="color: black;" required>
+                          </div>
+                        </div>
+                        <div class="cell-lg-12 offset-top-10">
+                          <div class="form-group">
+                            <input class="form-control form-validation-inside" id="modal-contact-phone" placeholder="Your phone number" type="tel" name="phone" data-constraints="@Required" style="color: black;" required pattern="[0-9]+">
+                          </div>
+                        </div>
+                        <div class="cell-lg-12 offset-top-10">
+                          <div class="form-group">
+                            <textarea class="form-control form-validation-inside" id="modal-contact-message" name="message" placeholder="Message" data-constraints="@Required" style="height: 160px; color: black;" required></textarea>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="text-center text-lg-left offset-top-10">
+                        <button class="btn btn-sm btn-primary" type="submit">Send Message</button>
+                      </div>
+                    </form> -->
+                     
+                <!-- <div class="offset-top-20">
+                  <a class="btn btn-primary btn-sm" id="openModal">Contact Us</a>
+                </div>
+              <div id="myModal" class="modal">
+                <div class="modalparent">
+                  <div class="modal-content">
+                    <form class="rd-mailform" id="modalContactForm" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php" novalidate="novalidate">
+                      <span class="close">&times;</span>
+                      <div class="form-group">
+                        <label class="text-black">Select your role:</label>
+                        <div>
+                          <input type="radio" id="owner" name="role" value="owner" required>
+                          <label for="owner">Owner</label>
+                          <input type="radio" id="company" name="role" value="company" required>
+                          <label for="company">Company</label>
+                        </div>
+                      </div>
+                      <div class="range range-narrow">
+                        <div class="cell-lg-6">
+                          <div class="form-group text-black">
+                            <input class="form-control form-validation-inside" id="modal-contact-name" placeholder="Your first name" type="text" name="name" data-constraints="@Required" style="color: black;" required>
+                          </div>
+                        </div>
+                        <div class="cell-lg-6 offset-top-10 offset-lg-top-0">
+                          <div class="form-group">
+                            <input class="form-control form-validation-inside" id="modal-contact-last-name" placeholder="Your last name" type="text" name="last-name" data-constraints="@Required" style="color: black;" required>
+                          </div>
+                        </div>
+                        <div class="cell-lg-12 offset-top-10">
+                          <div class="form-group">
+                            <input class="form-control form-validation-inside" id="modal-contact-email" placeholder="Your e-mail" type="email" name="email" data-constraints="@Required @Email" style="color: black;" required>
+                          </div>
+                        </div>
+                        <div class="cell-lg-12 offset-top-10">
+                          <div class="form-group">
+                            <input class="form-control form-validation-inside" id="modal-contact-phone" placeholder="Your phone number" type="tel" name="phone" data-constraints="@Required" style="color: black;" required pattern="[0-9]+">
+                          </div>
+                        </div>
+                        <div class="cell-lg-12 offset-top-10">
+                          <div class="form-group">
+                            <textarea class="form-control form-validation-inside" id="modal-contact-message" name="message" placeholder="Message" data-constraints="@Required" style="height: 160px; color: black;" required></textarea>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="text-center text-lg-left offset-top-10">
+                        <button class="btn btn-sm btn-primary" type="submit">Send Message</button>
+                      </div>
+                    </form> 
+
+
                   </div>
                 </div>
-              </div>  
+              </div>   -->
+            
+            <!-- Contact Us Button -->
+<div class="offset-top-20">
+  <a class="btn btn-primary btn-sm" id="openModal">Contact Us</a>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal">
+  <div class="modalparent">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <form class="rd-mailform" id="modalContactForm" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php" novalidate="novalidate">
+        <div class="form-group">
+          <label class="text-black" style="color: #808080; font-family: 'Montserrat', sans-serif;" >Select your role:</label>
+          <div>
+            <input type="radio" id="owner" name="role" style="cursor: pointer;" value="owner" required>
+            <label for="owner" style="color: #808080; cursor: pointer; margin-right: 30px; font-family: 'Montserrat', sans-serif;">Owner</label>
+            <input type="radio" id="company" name="role" style="cursor: pointer; font-family: 'Montserrat', sans-serif;"  value="company" required>
+            <label for="company" style="color: #808080; cursor: pointer;">Company</label>
+          </div>
+        </div>
+        <div class="range range-narrow">
+          <div class="cell-lg-6">
+            <!-- <div class="form-group text-black">
+              <input class="form-control form-validation-inside" id="modal-contact-name" placeholder="Your first name" type="text" name="name" data-constraints="@Required" style="color: black;" required>
+
+            </div> -->
+
+            <div class="form-group text-black">
+              <input class="form-control form-validation-inside" id="modal-contact-name" placeholder="Your first name" type="text" name="name" data-constraints="@Required" style="color: black;" required>
+            </div>
+          </div>
+          <div class="cell-lg-6 offset-top-10 offset-lg-top-0">
+            <div class="form-group">
+              <input class="form-control form-validation-inside" id="modal-contact-last-name" placeholder="Your last name" type="text" name="last-name" data-constraints="@Required" style="color: black;" required>
+            </div>
+          </div>
+          <div class="cell-lg-12 offset-top-10">
+            <div class="form-group">
+              <input class="form-control form-validation-inside" id="modal-contact-email" placeholder="Your e-mail" type="email" name="email" data-constraints="@Required @Email" style="color: black;" >
+            </div>
+          </div>
+          <div class="cell-lg-12 offset-top-10">
+            <div class="form-group">
+              <input class="form-control form-validation-inside"  id="modal-contact-phone" placeholder="Your phone number"  type="tel" name="phone" data-constraints="@Required" style="color: black;" required pattern="[0-9]+">
+            </div>
+          </div>
+          <div class="cell-lg-12 offset-top-10">
+            <div class="form-group">
+              <textarea class="form-control form-validation-inside" id="modal-contact-message" name="message" placeholder="Message" data-constraints="@Required" style="height: 100px; color: black;"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="text-center text-lg-left offset-top-10">
+          <button class="btn btn-sm btn-primary" type="submit">Send Message</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
             </div>
             </div>
           </div>
@@ -531,7 +698,7 @@
                 <button class="btn btn-sm btn-primary" type="submit">send message</button>
               </div>
             </form> -->
-            <form class="rd-mailform" id="contactForm" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php" novalidate="novalidate">
+            <!-- <form class="rd-mailform" id="contactForm" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php" novalidate="novalidate">
               <div class="range range-narrow">
                 <div class="cell-lg-6">
                   <div class="form-group text-black">
@@ -557,7 +724,122 @@
               <div class="text-center text-lg-left offset-top-10">
                 <button class="btn btn-sm btn-primary" type="submit">Send Message</button>
               </div>
-            </form>
+            </form> -->
+            <!-- <form class="rd-mailform" id="contactForm" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php" novalidate="novalidate">
+              <div class="range range-narrow">
+                <div class="cell-lg-6">
+                  <div class="form-group text-black">
+                    <input class="form-control form-validation-inside" id="contact-name" placeholder="Your first name" type="text" name="name" data-constraints="@Required" style="color: black;" required>
+                  </div>
+                </div>
+                <div class="cell-lg-6 offset-top-10 offset-lg-top-0">
+                  <div class="form-group">
+                    <input class="form-control form-validation-inside" id="contact-last-name" placeholder="Your last name" type="text" name="last-name" data-constraints="@Required" style="color: black;" required>
+                  </div>
+                </div>
+                <div class="cell-lg-12 offset-top-10">
+                  <div class="form-group">
+                    <input class="form-control form-validation-inside" id="contact-email" placeholder="Your e-mail" type="email" name="email" data-constraints="@Required @Email" style="color: black;" required>
+                  </div>
+                </div>
+                <div class="cell-lg-12 offset-top-10">
+                  <div class="form-group">
+                    <textarea class="form-control form-validation-inside" id="contact-message" name="message" placeholder="Message" data-constraints="@Required" style="height: 160px; color: black;" required></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="text-center text-lg-left offset-top-10">
+                <button class="btn btn-sm btn-primary" type="submit">Send Message</button>
+              </div>
+            </form> -->
+            <!-- <form class="rd-mailform" id="contactForm" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php" novalidate="novalidate">
+              <span class="close">&times;</span>
+              <div class="form-group">
+                <label class="text-black">Select your role:</label>
+                <div>
+                  <input type="radio" id="owner" name="role" value="owner" required>
+                  <label for="owner">Owner</label>
+                  <input type="radio" id="company" name="role" value="company" required>
+                  <label for="company">Company</label>
+                </div>
+              </div>
+              <div class="range range-narrow">
+                <div class="cell-lg-6">
+                  <div class="form-group text-black">
+                    <input class="form-control form-validation-inside" id="modal-contact-name" placeholder="Your first name" type="text" name="name" data-constraints="@Required" style="color: black;" required>
+                  </div>
+                </div>
+                <div class="cell-lg-6 offset-top-10 offset-lg-top-0">
+                  <div class="form-group">
+                    <input class="form-control form-validation-inside" id="modal-contact-last-name" placeholder="Your last name" type="text" name="last-name" data-constraints="@Required" style="color: black;" required>
+                  </div>
+                </div>
+                <div class="cell-lg-12 offset-top-10">
+                  <div class="form-group">
+                    <input class="form-control form-validation-inside" id="modal-contact-email" placeholder="Your e-mail" type="email" name="email" data-constraints="@Required @Email" style="color: black;" required>
+                  </div>
+                </div>
+                <div class="cell-lg-12 offset-top-10">
+                  <div class="form-group">
+                    <input class="form-control form-validation-inside" id="modal-contact-phone" placeholder="Your phone number" type="tel" name="phone" data-constraints="@Required" style="color: black;" required pattern="[0-9]+">
+                  </div>
+                </div>
+                <div class="cell-lg-12 offset-top-10">
+                  <div class="form-group">
+                    <textarea class="form-control form-validation-inside" id="modal-contact-message" name="message" placeholder="Message" data-constraints="@Required" style="height: 160px; color: black;" required></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="text-center text-lg-left offset-top-10">
+                <button class="btn btn-sm btn-primary" type="submit">Send Message</button>
+              </div>
+            </form> -->
+            <form class="rd-mailform" id="footerContactForm" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php" novalidate="novalidate">
+              <!-- Select Your Role (Radio Buttons) -->
+              <div class="form-group" style="display: flex; align-items: start; flex-direction: column;">
+                  <label class="text-black" style="color: #fff;">Select your role:</label>
+                  <div style="margin-bottom: 15px;">
+                      <input type="radio" id="footer-owner" name="role" style="cursor: pointer;" value="owner" required>
+                      <label for="footer-owner" style="color: #fff; cursor: pointer; margin-right: 30px;" >Owner</label>
+          
+                      <input type="radio" id="footer-company" name="role" style="cursor: pointer;" value="company" required>
+                      <label for="footer-company" style="color: #fff; cursor: pointer; margin-right: 20px;">Company</label>
+                  </div>
+              </div>
+          
+              <div class="range range-narrow">
+                  <div class="cell-lg-6">
+                      <div class="form-group text-black">
+                          <input class="form-control form-validation-inside" id="footer-contact-name" placeholder="Your first name" type="text" name="name" data-constraints="@Required" style="color: black; background-color: #fff;" required>
+                      </div>
+                  </div>
+                  <div class="cell-lg-6 offset-top-10 offset-lg-top-0">
+                      <div class="form-group">
+                          <input class="form-control form-validation-inside" id="footer-contact-last-name" placeholder="Your last name" type="text" name="last-name" data-constraints="@Required" style="color: black; background-color: #fff;" required>
+                      </div>
+                  </div>
+                  <div class="cell-lg-12 offset-top-10">
+                      <div class="form-group">
+                          <input class="form-control form-validation-inside" id="footer-contact-phone" placeholder="Your phone number" type="tel" name="phone" data-constraints="@Required" style="color: black; background-color: #fff;" required pattern="[0-9]+">
+                      </div>
+                  </div>
+                  <div class="cell-lg-12 offset-top-10">
+                      <div class="form-group">
+                          <input class="form-control form-validation-inside" id="footer-contact-email" placeholder="Your e-mail" type="email" name="email" data-constraints="@Email" style="color: black; background-color: #fff;">
+                      </div>
+                  </div>
+                  <div class="cell-lg-12 offset-top-10">
+                      <div class="form-group">
+                          <textarea class="form-control form-validation-inside" id="footer-contact-message" name="message" placeholder="Message" style="height: 120px; color: black; background-color: #fff;"></textarea>
+                      </div>
+                  </div>
+              </div>
+          
+              <div class="text-center text-lg-left offset-top-10">
+                  <button class="btn btn-sm btn-primary" type="submit">Send Message</button>
+              </div>
+          </form>
+          
           </div>
           <div style="width: 50%;">
             <div class="cell-xs-10 cell-md-4 offset-top-65 offset-md-top-0 height-100%">

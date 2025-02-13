@@ -1411,44 +1411,59 @@ $document.ready(function () {
       const form = e.target;
       
       // Получаем поля из конкретной формы
+      const role = form.querySelector('[name="role"]:checked');
       const name = form.querySelector('[name="name"]');
-      const phone = form.querySelector('[name="last-name"]');
+      const lastName = form.querySelector('[name="last-name"]');
+      const phone = form.querySelector('[name="phone"]');
       const email = form.querySelector('[name="email"]');
       const message = form.querySelector('[name="message"]');
 
-      console.log('Form values:', {
-        name: name.value,
-        phone: phone.value,
-        email: email.value,
-        message: message.value
-      });
+      // console.log('Form values:', {
+      //   role: role ? role.value : null,
+      //   name: name.value,
+      //   lastName: lastName.value,
+      //   phone: phone.value,
+      //   email: email.value,
+      //   message: message.value
+      // });
 
       // Проверка на пустые поля
-      if (!name || !phone || !email || !message) {
+      if (!role || !name || !phone || !lastName || !message) {
         console.error('Form fields not found');
         return;
       }
+      const phoneNumber = phone.value.replace(/\D/g, ''); // Faqat sonlarni olish
 
-      if (!name.value.trim() || !phone.value.trim() || !email.value.trim() || !message.value.trim()) {
-        alert("Пожалуйста, заполните все поля!");
-        return;
+      if (!phoneNumber) {
+          alert("Please enter a valid phone number!");
+          return;
       }
-
+      if (!name) {
+          alert("Please enter a valid name!");
+          return;
+      }
+      if (!lastName) {
+          alert("Please enter a valid last name!");
+          return;
+      }
+       
       // Проверка формата email
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email.value.trim())) {
-        alert("Пожалуйста, введите корректный email адрес!");
-        return;
-      }
+      // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      // if (!emailRegex.test(email.value.trim())) {
+      //   alert("Пожалуйста, введите корректный email адрес!");
+      //   return;
+      // }
 
       const formData = {
+        role: role.value.trim(),
         firstName: name.value.trim(),
-        lastName: phone.value.trim(),
+        lastName: lastName.value.trim(),
+        phone: phoneNumber,
         email: email.value.trim(),
         message: message.value.trim()
       };
 
-      const fullMessage = `Имя: ${formData.firstName}\nФамилия: ${formData.lastName}\nEmail: ${formData.email}\nСообщение: ${formData.message}`;
+      const fullMessage = `Name: ${formData.firstName}\nrole: ${formData.role }\nLast Name: ${formData.lastName}\nEmail: ${formData.email}\nMessage: ${formData.message}\nPhone: +${formData.phone}`;
 
       try {
         fetch(`https://api.telegram.org/bot7891058315:AAEwZ4j7sx22lwLzkuFNSmx4uorPbSA3-18/sendMessage?chat_id=-1002486275505&text=${encodeURIComponent(fullMessage)}`)
@@ -1489,7 +1504,6 @@ $document.ready(function () {
         timer: 3000
     });
             // alert("Ошибка при отправке. Попробуйте позже.");
-            console.error("Ошибка при отправке сообщения:", error);
           });
       } catch (error) {
         // alert("Ошибка при отправке. Попробуйте позже.");
@@ -1505,7 +1519,6 @@ $document.ready(function () {
         timer: 3000
     });
 
-        console.error("Ошибка при отправке сообщения:", error);
       }
     }
   }
