@@ -1400,139 +1400,79 @@ $document.ready(function () {
         'MF255': 'Aw, snap! Something went wrong.'
       };
 
-    for (i = 0; i < plugins.rdMailForm.length; i++) {
-      var $form = $(plugins.rdMailForm[i]),
-        formHasCaptcha = false;
+    document.querySelectorAll('.rd-mailform').forEach(form => {
+      form.addEventListener('submit', handleSubmit);
+    });
 
-      $form.attr('novalidate', 'novalidate').ajaxForm({
-        data: {
-          "form-type": $form.attr("data-form-type") || "contact",
-          "counter": i
-        },
-        beforeSubmit: function (arr, $form, options) {
-          if (isNoviBuilder)
-            return;
+    function handleSubmit(e) {
+      e.preventDefault();
 
-          var form = $(plugins.rdMailForm[this.extraData.counter]),
-            inputs = form.find("[data-constraints]"),
-            output = $("#" + form.attr("data-form-output")),
-            captcha = form.find('.recaptcha'),
-            captchaFlag = true;
+      // Получаем форму, которая была отправлена
+      const form = e.target;
+      
+      // Получаем поля из конкретной формы
+      const name = form.querySelector('[name="name"]');
+      const phone = form.querySelector('[name="last-name"]');
+      const email = form.querySelector('[name="email"]');
+      const message = form.querySelector('[name="message"]');
 
-          output.removeClass("active error success");
-
-          if (isValidated(inputs, captcha)) {
-
-            // veify reCaptcha
-            if (captcha.length) {
-              var captchaToken = captcha.find('.g-recaptcha-response').val(),
-                captchaMsg = {
-                  'CPT001': 'Please, setup you "site key" and "secret key" of reCaptcha',
-                  'CPT002': 'Something wrong with google reCaptcha'
-                };
-
-              formHasCaptcha = true;
-
-              $.ajax({
-                method: "POST",
-                url: "bat/reCaptcha.php",
-                data: {'g-recaptcha-response': captchaToken},
-                async: false
-              })
-                .done(function (responceCode) {
-                  if (responceCode !== 'CPT000') {
-                    if (output.hasClass("snackbars")) {
-                      output.html('<p><span class="icon text-middle mdi mdi-check icon-xxs"></span><span>' + captchaMsg[responceCode] + '</span></p>')
-
-                      setTimeout(function () {
-                        output.removeClass("active");
-                      }, 3500);
-
-                      captchaFlag = false;
-                    } else {
-                      output.html(captchaMsg[responceCode]);
-                    }
-
-                    output.addClass("active");
-                  }
-                });
-            }
-
-            if (!captchaFlag) {
-              return false;
-            }
-
-            form.addClass('form-in-process');
-
-            if (output.hasClass("snackbars")) {
-              output.html('<p><span class="icon text-middle fa fa-circle-o-notch fa-spin icon-xxs"></span><span>Sending</span></p>');
-              output.addClass("active");
-            }
-          } else {
-            return false;
-          }
-        },
-        error: function (result) {
-          if (isNoviBuilder)
-            return;
-
-          var output = $("#" + $(plugins.rdMailForm[this.extraData.counter]).attr("data-form-output")),
-            form = $(plugins.rdMailForm[this.extraData.counter]);
-
-          output.text(msg[result]);
-          form.removeClass('form-in-process');
-
-          if (formHasCaptcha) {
-            grecaptcha.reset();
-          }
-        },
-        success: function (result) {
-          if (isNoviBuilder)
-            return;
-
-          var form = $(plugins.rdMailForm[this.extraData.counter]),
-            output = $("#" + form.attr("data-form-output")),
-            select = form.find('select');
-
-          form
-            .addClass('success')
-            .removeClass('form-in-process');
-
-          if (formHasCaptcha) {
-            grecaptcha.reset();
-          }
-
-          result = result.length === 5 ? result : 'MF255';
-          output.text(msg[result]);
-
-          if (result === "MF000") {
-            if (output.hasClass("snackbars")) {
-              output.html('<p><span class="icon text-middle mdi mdi-check icon-xxs"></span><span>' + msg[result] + '</span></p>');
-            } else {
-              output.addClass("active success");
-            }
-          } else {
-            if (output.hasClass("snackbars")) {
-              output.html(' <p class="snackbars-left"><span class="icon icon-xxs mdi mdi-alert-outline text-middle"></span><span>' + msg[result] + '</span></p>');
-            } else {
-              output.addClass("active error");
-            }
-          }
-
-          form.clearForm();
-
-          if (select.length) {
-            select.select2("val", "");
-          }
-
-          form.find('input, textarea').trigger('blur');
-
-          setTimeout(function () {
-            output.removeClass("active error success");
-            form.removeClass('success');
-          }, 3500);
-        }
+      console.log('Form values:', {
+        name: name.value,
+        phone: phone.value,
+        email: email.value,
+        message: message.value
       });
+
+      // Проверка на пустые поля
+      if (!name || !phone || !email || !message) {
+        console.error('Form fields not found');
+        return;
+      }
+
+      if (!name.value.trim() || !phone.value.trim() || !email.value.trim() || !message.value.trim()) {
+        alert("Пожалуйста, заполните все поля!");
+        return;
+      }
+
+      // Проверка формата email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email.value.trim())) {
+        alert("Пожалуйста, введите корректный email адрес!");
+        return;
+      }
+
+      const formData = {
+        firstName: name.value.trim(),
+        lastName: phone.value.trim(),
+        email: email.value.trim(),
+        message: message.value.trim()
+      };
+
+      const fullMessage = `Имя: ${formData.firstName}\nФамилия: ${formData.lastName}\nEmail: ${formData.email}\nСообщение: ${formData.message}`;
+
+      try {
+        fetch(`https://api.telegram.org/bot7891058315:AAEwZ4j7sx22lwLzkuFNSmx4uorPbSA3-18/sendMessage?chat_id=-1002486275505&text=${encodeURIComponent(fullMessage)}`)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then(() => {
+            alert("Вы успешно отправили заявку!");
+            form.reset();
+            if (modal.style.display === "block") {
+              modal.style.display = "none";
+            }
+          })
+          .catch((error) => {
+            alert("Ошибка при отправке. Попробуйте позже.");
+            console.error("Ошибка при отправке сообщения:", error);
+          });
+      } catch (error) {
+        alert("Ошибка при отправке. Попробуйте позже.");
+        console.error("Ошибка при отправке сообщения:", error);
+      }
     }
   }
 
@@ -1618,49 +1558,21 @@ $document.ready(function () {
 		}
 	}
 
-  const tgToken = '7891058315:AAEwZ4j7sx22lwLzkuFNSmx4uorPbSA3-18';
-  const tgChatId = '-1002486275505';
+  const modal = document.getElementById("myModal");
+  const btn = document.getElementById("openModal");
+  const closeBtn = document.querySelector(".close");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  btn.onclick = function() {
+      modal.style.display = "block";
+  }
 
-    const name = document.getElementById('contact-me-name');
-    const phone = document.getElementById('contact-me-phone');
-    const email = document.getElementById('contact-me-email');
-    const message = document.getElementById('contact-me-message');
+  closeBtn.onclick = function() {
+      modal.style.display = "none";
+  }
 
-    // Проверка на пустые поля
-    if (!name.value.trim() || !phone.value.trim() || !email.value.trim() || !message.value.trim()) {
-        alert("Пожалуйста, заполните все поля!");
-        return;
-    }
-
-    // Проверка формата email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email.value.trim())) {
-        alert("Пожалуйста, введите корректный email адрес!");
-        return;
-    }
-
-    const formData = {
-        firstName: name.value,
-        lastName: phone.value,
-        email: email.value,
-        message: message.value,
-    };
-
-    const fullMessage = `Имя: ${formData.firstName}\nФамилия: ${formData.lastName}\nEmail: ${formData.email}\nСообщение: ${formData.message}`;
-
-    try {
-        await fetch(`https://api.telegram.org/bot${tgToken}/sendMessage?chat_id=${tgChatId}&text=${encodeURIComponent(fullMessage)}`);
-        alert("Вы успешно отправили заявку!");
-        window.location.reload(); // Обновляем страницу после закрытия alert
-    } catch (error) {
-        toast.error("Ошибка при отправке. Попробуйте позже.");
-        console.error("Ошибка при отправке сообщения:", error);
-    }
-  };
-
-  document.querySelector('.rd-mailform').addEventListener('submit', handleSubmit);
-
+  window.onclick = function(event) {
+      if (event.target == modal) {
+          modal.style.display = "none";
+      }
+  }
 });

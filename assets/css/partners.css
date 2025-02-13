@@ -36,6 +36,10 @@
   right: 0;
   background: linear-gradient(to left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
 }
+::placeholder {
+  color: gray !important; /* Placeholder rangini o'zgartirish */
+  opacity: 1; /* Ba'zi brauzerlarda to‘liq ko‘rinishi uchun */
+}
 
 .partners-scroll {
   display: inline-block;
@@ -56,4 +60,49 @@
 
 .partner-logo img:hover {
   transform: scale(1.1);
+}
+.modal {
+  display: none; /* Boshlang'ich holatda yashirilgan */
+  position: fixed; /* Ekranda qotib qoladi */
+  z-index: 999; /* Boshqa elementlardan ustun bo'ladi */
+  left: 0;
+  top: 0;
+  width: 100%; /* Butun ekran eni */
+  height: 100%; /* Butun ekran balandligi */
+  overflow: auto; /* Agar kontent katta bo'lsa, skroll qilish imkoniyati */
+  background-color: rgb(0,0,0); /* Fon rangi */
+  background-color: rgba(0,0,0,0.4); /* Shaffof qora fon */
+}
+.modalparent {
+  display: flex;
+  justify-content: center; /* Gorizontal markazlash */
+  align-items: center; /* Vertikal markazlash */
+  height: 100%; /* Modal oynani butun balandligini egallash */
+}
+
+/* Modal oyna kontenti */
+.modal-content {
+  background-color: #fefefe;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Kontentning kengligi */
+  max-width: 500px; /* Maksimal kenglik */
+  border-radius: 10px;
+  position: relative;
+  margin: 0; 
+}
+
+/* Yopish tugmasi */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
 }
