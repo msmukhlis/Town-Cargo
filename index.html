@@ -233,17 +233,17 @@
                       <div class="range range-narrow">
                         <div class="cell-lg-6">
                           <div class="form-group text-black">
-                            <input class="form-control form-validation-inside" id="modal-contact-name" placeholder="Your first name" type="text" name="name" data-constraints="@Required" style="color: black;">
+                            <input class="form-control form-validation-inside" id="modal-contact-name" placeholder="Your first name" type="text" name="name" data-constraints="@Required" style="color: black;" required>
                           </div>
                         </div>
                         <div class="cell-lg-6 offset-top-10 offset-lg-top-0">
                           <div class="form-group">
-                            <input class="form-control form-validation-inside" id="modal-contact-last-name" placeholder="Your last name" type="text" name="last-name" data-constraints="@Required" style="color: black;">
+                            <input class="form-control form-validation-inside" id="modal-contact-last-name" placeholder="Your last name" type="text" name="last-name" data-constraints="@Required" style="color: black;" required>
                           </div>
                         </div>
                         <div class="cell-lg-12 offset-top-10">
                           <div class="form-group">
-                            <input class="form-control form-validation-inside" id="modal-contact-email" placeholder="Your e-mail" type="email" name="email" data-constraints="@Required @Email" style="color: black;">
+                            <input class="form-control form-validation-inside" id="modal-contact-email" placeholder="Your e-mail" type="email" name="email" data-constraints="@Required @Email" style="color: black;" required>
                           </div>
                         </div>
                         <div class="cell-lg-12 offset-top-10">
@@ -253,7 +253,7 @@
                       </div>
                         <div class="cell-lg-12 offset-top-10">
                           <div class="form-group">
-                            <textarea class="form-control form-validation-inside" id="modal-contact-message" name="message" placeholder="Message" data-constraints="@Required" style="height: 160px; color: black;"></textarea>
+                            <textarea class="form-control form-validation-inside" id="modal-contact-message" name="message" placeholder="Message" data-constraints="@Required" style="height: 160px; color: black;" required></textarea>
                           </div>
                         </div>
                       </div>
@@ -401,7 +401,7 @@
           </div>
           <div class="cell-lg-12 offset-top-10">
             <div class="form-group">
-              <input class="form-control form-validation-inside"  id="modal-contact-phone" placeholder="Your phone number"  type="tel" name="phone" data-constraints="@Required" style="color: black;" required pattern="[0-9]+">
+              <input class="form-control form-validation-inside"  id="modal-contact-phone"  placeholder="+1" type="tel" name="phone" data-constraints="@Required" style="color: black;"  required pattern="^\+1\d{10}$" maxlength="12" value="+1" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
             </div>
           </div>
           <div class="cell-lg-12 offset-top-10">
@@ -783,7 +783,7 @@
                   <div class="form-group">
                     <input class="form-control form-validation-inside" id="modal-contact-phone" placeholder="Your phone number" type="tel" name="phone" data-constraints="@Required" style="color: black;" required pattern="[0-9]+">
                   </div>
-                </div>
+              </div>
                 <div class="cell-lg-12 offset-top-10">
                   <div class="form-group">
                     <textarea class="form-control form-validation-inside" id="modal-contact-message" name="message" placeholder="Message" data-constraints="@Required" style="height: 160px; color: black;" required></textarea>
@@ -820,7 +820,7 @@
                   </div>
                   <div class="cell-lg-12 offset-top-10">
                       <div class="form-group">
-                          <input class="form-control form-validation-inside" id="footer-contact-phone" placeholder="Your phone number" type="tel" name="phone" data-constraints="@Required" style="color: black; background-color: #fff;" required pattern="[0-9]+">
+                          <input class="form-control form-validation-inside" id="footer-contact-phone" placeholder="+1" type="tel" name="phone" data-constraints="@Required" style="color: black; background-color: #fff;" required pattern="^\+1\d{10}$" maxlength="12" value="+1" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                       </div>
                   </div>
                   <div class="cell-lg-12 offset-top-10">
@@ -877,7 +877,7 @@
             </ul>
           </div>
           <div class="offset-top-20">
-            <p class="text-dark">&copy; <span id="copyright-year"></span> All Rights Reserved Terms of Use and <a class="text-dark" href="privacy.html">Privacy Policy</a></p>
+            <p class="text-dark">&copy; <span id="copyright-year"></span> Town Cargo All rights reserved <a class="text-dark" href="privacy.html">Privacy Policy</a></p>
           </div>
         </div>
       </footer>
