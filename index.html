@@ -17,14 +17,32 @@
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-
-
-
-		<!--[if lt IE 10]>
+    <style>
+        /* Consistent input styling for phone inputs */
+        #modal-contact-phone, 
+        #footer-contact-phone {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            color: #333;
+            transition: border-color 0.3s ease;
+        }
+        
+        #modal-contact-phone:focus, 
+        #footer-contact-phone:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0,123,255,0.3);
+        }
+    </style>
+    <!--[if lt IE 10]>
     <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="https://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
     <script src="js/html5shiv.min.js"></script>
-		<![endif]-->
+	<![endif]-->
   </head>
   <body>
     <!-- Page-->
@@ -370,10 +388,11 @@
       <span class="close">&times;</span>
       <form class="rd-mailform" id="modalContactForm" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php" novalidate="novalidate">
         <div class="form-group">
-          <label class="text-black" style="color: #808080; font-family: 'Montserrat', sans-serif;" >Select your role:</label>
+          <label class="text-black">Select your role:</label>
           <div>
             <input type="radio" id="owner" name="role" style="cursor: pointer;" value="owner" required>
             <label for="owner" style="color: #808080; cursor: pointer; margin-right: 30px; font-family: 'Montserrat', sans-serif;">Owner</label>
+        
             <input type="radio" id="company" name="role" style="cursor: pointer; font-family: 'Montserrat', sans-serif;"  value="company" required>
             <label for="company" style="color: #808080; cursor: pointer;">Company</label>
           </div>
@@ -838,7 +857,7 @@
               <div class="text-center text-lg-left offset-top-10">
                   <button class="btn btn-sm btn-primary" type="submit">Send Message</button>
               </div>
-          </form>
+            </form>
           
           </div>
           <div style="width: 50%;">
@@ -922,5 +941,55 @@
     <!-- Java script-->
     <script src="assets/js/core.min.js"></script>
     <script src="assets/js/script.js"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.6/jquery.inputmask.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const modalParent = document.querySelector('.modalparent');
+        const closeButton = modalParent.querySelector('.close');
+        const modalPhoneInput = document.getElementById('modal-contact-phone');
+        const footerPhoneInput = document.getElementById('footer-contact-phone');
+        
+        // Function to handle phone input behavior
+        function setupPhoneInput(phoneInput) {
+            phoneInput.value = '+1';
+            phoneInput.addEventListener('input', function(e) {
+                // Always ensure +1 prefix
+                if (!this.value.startsWith('+1')) {
+                    this.value = '+1' + this.value.replace(/\D/g, '');
+                }
+                
+                // Limit total length to 12 characters (+1 and 10 digits)
+                if (this.value.length > 12) {
+                    this.value = this.value.slice(0, 12);
+                }
+            });
+            
+            // Prevent deleting +1 prefix
+            phoneInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Backspace' || e.key === 'Delete') {
+                    if (this.selectionStart <= 2) {
+                        e.preventDefault();
+                    }
+                }
+            });
+        }
+        
+        // Setup phone inputs
+        setupPhoneInput(modalPhoneInput);
+        setupPhoneInput(footerPhoneInput);
+        
+        closeButton.addEventListener('click', function() {
+            // Clear all input fields within the modal
+            const inputs = modalParent.querySelectorAll('input, select, textarea');
+            inputs.forEach(input => {
+                if (input.id === 'modal-contact-phone') {
+                    input.value = '+1';
+                } else {
+                    input.value = '';
+                }
+            });
+        });
+      });
+    </script>
   <!-- Google Tag Manager --><noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-P9FT69" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P9FT69');</script><!-- End Google Tag Manager --></body>
 </html>
